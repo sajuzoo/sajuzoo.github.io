@@ -39,11 +39,15 @@ h1,h2,.display{font-family:var(--display);font-weight:400;letter-spacing:-.01em;
 .field label{display:block;font-size:14px;color:var(--ink-soft);margin-bottom:6px}
 .row{display:flex;gap:10px}
 .row>*{flex:1;min-width:0}
-input,select{width:100%;font:inherit;color:var(--ink);background:var(--field);border:2px solid var(--line);border-radius:14px;padding:11px 12px;outline:none}
+input,select{width:100%;min-width:0;max-width:100%;display:block;font:inherit;color:var(--ink);background:var(--field);border:2px solid var(--line);border-radius:14px;padding:11px 12px;outline:none;-webkit-appearance:none;appearance:none}
+input[type=date],input[type=time]{min-height:48px;text-align:left;-webkit-text-fill-color:var(--ink)}
+input::-webkit-date-and-time-value{text-align:left}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 12px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:32px}
+main,.card,.field{min-width:0;max-width:100%}
 input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible,.bubble:focus-visible{outline:3px solid var(--water);outline-offset:2px}
 input:disabled{opacity:.4}
 .check{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);margin-top:8px;cursor:pointer}
-.check input{width:18px;height:18px;padding:0;accent-color:var(--fire)}
+.check input{width:18px;height:18px;min-height:0;padding:0;display:inline-block;-webkit-appearance:checkbox;appearance:checkbox;accent-color:var(--fire);border-radius:4px}
 details{margin-top:2px}
 summary{cursor:pointer;font-size:14px;color:var(--ink-soft);list-style:none}
 summary::-webkit-details-marker{display:none}
@@ -227,12 +231,12 @@ button.go:disabled{cursor:wait;animation:none}
   <form class="card" id="form">
     <div class="field">
       <label for="date">태어난 날</label>
-      <input type="date" id="date" required min="1900-01-01" max="2100-12-31" value="1990-05-15">
+      <input type="date" id="date" required min="1900-01-01" max="2100-12-31">
     </div>
     <div class="field">
       <label for="time">태어난 시간</label>
       <div class="row">
-        <input type="time" id="time" value="14:30">
+        <input type="time" id="time">
         <select id="region" aria-label="태어난 곳"></select>
       </div>
       <label class="check"><input type="checkbox" id="unknown"> 시간을 몰라요</label>
@@ -999,7 +1003,6 @@ $("#again").addEventListener("click", () => { $("#result").hidden = true; $("#fo
   const h = handleHash();
   if (h === "invite") { $("#form").scrollIntoView({ block: "start" }); return; }
   if (h && h.me) { reveal(h.me); return; }
-  $("#form").requestSubmit();
 })();
 addEventListener("hashchange", () => location.reload());
 </script>
