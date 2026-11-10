@@ -44,6 +44,10 @@ input[type=date],input[type=time]{min-height:48px;text-align:left;-webkit-text-f
 input::-webkit-date-and-time-value{text-align:left}
 select{background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 12px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:32px}
 main,.card,.field{min-width:0;max-width:100%}
+.fld{position:relative;min-width:0}
+.fld .ph{display:none;position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-soft);pointer-events:none;font-size:16px}
+.ios .fld.empty .ph{display:block}
+.fld input:disabled~.ph{opacity:.4}
 input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible,.bubble:focus-visible{outline:3px solid var(--water);outline-offset:2px}
 input:disabled{opacity:.4}
 .check{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);margin-top:8px;cursor:pointer}
@@ -231,12 +235,12 @@ button.go:disabled{cursor:wait;animation:none}
   <form class="card" id="form">
     <div class="field">
       <label for="date">태어난 날</label>
-      <input type="date" id="date" required min="1900-01-01" max="2100-12-31">
+      <div class="fld"><input type="date" id="date" required min="1900-01-01" max="2100-12-31"><span class="ph" aria-hidden="true">연도. 월. 일</span></div>
     </div>
     <div class="field">
       <label for="time">태어난 시간</label>
       <div class="row">
-        <input type="time" id="time">
+        <div class="fld"><input type="time" id="time"><span class="ph" aria-hidden="true">시간</span></div>
         <select id="region" aria-label="태어난 곳"></select>
       </div>
       <label class="check"><input type="checkbox" id="unknown"> 시간을 몰라요</label>
@@ -585,6 +589,8 @@ const ANIMAL_OPTS = {
 })();
 
 /* ---------- 폼 ---------- */
+if (/iP(hone|ad|od)/.test(navigator.userAgent)) document.documentElement.classList.add("ios");
+for (const w of document.querySelectorAll(".fld")) { const i = w.querySelector("input"); const sync = () => w.classList.toggle("empty", !i.value); i.addEventListener("input", sync); i.addEventListener("change", sync); sync(); }
 (function init(){
   const sel = $("#region");
   for (const r of Object.keys(REGIONS)) { const o = document.createElement("option"); o.value = o.textContent = r; sel.append(o); }
