@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>문의 · 내 사주 동물</title>
+<meta name="description" content="내 사주 동물 문의. 계산 오류, 풀이 문구, 기능 제안.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="문의 · 내 사주 동물">
+<meta property="og:description" content="내 사주 동물 문의. 계산 오류, 풀이 문구, 기능 제안.">
+<meta property="og:image" content="https://sylim9.github.io/saju-app/og.png">
+<meta property="og:url" content="https://sylim9.github.io/saju-app/contact.html">
+<meta property="og:locale" content="ko_KR">
+<link rel="canonical" href="https://sylim9.github.io/saju-app/contact.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#1B1C38; --sky-deep:#12132A; --star:#FFF2C2;
+  --ink:#F6EFDC; --ink-soft:#A8A7C3; --line:#F6EFDC;
+  --sticker:#2C2D52; --sticker-2:#35365F;
+  --wood:#7FD486; --fire:#FF8E80; --earth:#F0C765; --metal:#C9D3DE; --water:#78B8F6;
+  --on-accent:#2A2B55;
+  --display:"Jua",sans-serif; --body:"Gowun Dodum",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--sky);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;
+  padding:28px max(16px,env(safe-area-inset-right,0px)) 80px max(16px,env(safe-area-inset-left,0px))}
+main{max-width:620px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em;text-wrap:balance;line-height:1.25}
+h1{font-size:30px;margin:0 0 6px;color:var(--star)}
+h2{font-size:22px;margin:40px 0 10px;color:var(--star)}
+h3{font-size:18px;margin:22px 0 6px}
+p{margin:0 0 12px}
+a{color:var(--star)}
+.lead{color:var(--ink-soft);margin-bottom:28px}
+.nav{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;margin-bottom:26px}
+.nav a{color:var(--ink-soft);text-decoration:none}
+.nav a.home{font-family:var(--display);color:var(--star);font-size:16px}
+.card{background:var(--sticker);border:3px solid var(--line);border-radius:18px 22px 18px 22px/22px 18px 22px 18px;padding:18px 20px;margin:0 0 18px;box-shadow:4px 4px 0 var(--sky-deep)}
+.card.soft{border-style:dashed;box-shadow:none}
+ul,ol{padding-left:20px;margin:0 0 12px}
+li{margin-bottom:4px}
+.soft-t{color:var(--ink-soft);font-size:14px}
+.animal{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:start;margin:30px 0 8px}
+.animal .pic{width:96px;height:96px;border-radius:50%;border:4px solid var(--ink);background:var(--c);overflow:hidden;display:grid;place-items:center;font-size:44px}
+.animal .pic img{width:100%;height:100%;object-fit:cover;display:block}
+.animal h2{margin:0 0 2px;scroll-margin-top:20px}
+.animal .meta{font-size:13px;color:var(--ink-soft)}
+.tag{display:inline-block;font-size:12px;padding:2px 10px;border-radius:999px;border:2px solid var(--c);color:var(--ink);margin:6px 6px 0 0}
+blockquote{margin:12px 0;padding:12px 16px;background:var(--ink);color:var(--sky-deep);border-radius:18px 20px 18px 6px;font-size:15px}
+blockquote p{margin:0 0 4px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+.toc a{display:inline-flex;align-items:center;gap:6px;background:var(--sticker);border:2px solid var(--c);border-radius:999px;padding:5px 12px;font-size:14px;color:var(--ink);text-decoration:none}
+.elem{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;margin-bottom:12px}
+.elem .dot{width:44px;height:44px;border-radius:50%;border:3px solid var(--line);background:var(--c);display:grid;place-items:center;font-family:var(--display);font-size:20px;color:var(--on-accent)}
+.elem b{font-family:var(--display);font-weight:400;font-size:16px;display:block}
+.elem small{color:var(--ink-soft);font-size:13px}
+.cta{display:block;text-align:center;font-family:var(--display);font-size:21px;color:var(--on-accent);background:var(--fire);border:3px solid var(--line);border-radius:18px 22px 18px 22px/22px 18px 22px 18px;padding:14px;text-decoration:none;box-shadow:4px 4px 0 var(--sky-deep);margin:34px 0 10px}
+.foot{margin-top:48px;text-align:center;font-size:12px;color:var(--ink-soft);line-height:1.9}
+.foot a{color:var(--ink-soft);text-decoration:none;margin:0 6px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--sticker-2);vertical-align:top}
+th{color:var(--ink-soft);font-weight:400;white-space:nowrap}
+</style>
+</head>
+<body>
+<main>
+<nav class="nav"><a class="home" href="./">🦁 내 사주 동물</a><a href="animals.html">동물 설명서</a><a href="about.html">서비스 소개</a><a href="contact.html">문의</a></nav>
+
+<h1>문의</h1>
+<p class="lead">틀린 게 있거나, 하고 싶은 말이 있거나, 그냥 내 동물이 마음에 안 들면 알려 줘.</p>
+
+<div class="card">
+<h3>이메일</h3>
+<p><a href="mailto:sazoo.app@gmail.com">sazoo.app@gmail.com</a></p>
+<p class="soft-t">개인이 운영하는 거라 답이 며칠 걸릴 수 있어.</p>
+</div>
+
+<div class="card soft">
+<h3>이런 걸 보내 주면 좋아</h3>
+<ul>
+<li><b>계산이 다른 것 같아</b> — 넣은 생년월일시와 출생 지역, 다르게 나온 사이트 이름을 같이 보내 줘. 절기 경계나 야자시 설정 차이인 경우가 많아서, 같이 보면 금방 알 수 있어.</li>
+<li><b>풀이 문구가 이상해</b> — 어느 문장인지 알려 주면 고칠게.</li>
+<li><b>동네 한자가 틀렸어</b> — 공식 표기를 같이 알려 주면 바로 반영할게.</li>
+<li><b>이런 기능 있으면 좋겠어</b> — 대운, 결과 카드 이미지 같은 거 준비 중이야.</li>
+</ul>
+</div>
+
+<div class="card soft">
+<h3>이건 못 해 줘</h3>
+<p>개인 사주 상담. 여기 풀이는 자동으로 만들어지는 거고, 운영자는 사주 전문가가 아니야.</p>
+</div>
+
+<a class="cta" href="./">내 동물 찾으러 가기</a>
+
+<p class="foot"><a href="./">홈</a>·<a href="animals.html">동물 설명서</a>·<a href="about.html">서비스 소개</a>·<a href="privacy.html">개인정보처리방침</a>·<a href="contact.html">문의</a><br>캐릭터 이미지는 AI로 생성한 그림이에요 · © 내 사주 동물</p>
+</main>
+</body>
+</html>

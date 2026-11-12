@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>개인정보처리방침 · 내 사주 동물</title>
+<meta name="description" content="내 사주 동물 개인정보처리방침. 입력한 생년월일시는 브라우저 안에서만 계산되고 서버에 저장되지 않습니다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="개인정보처리방침 · 내 사주 동물">
+<meta property="og:description" content="내 사주 동물 개인정보처리방침. 입력한 생년월일시는 브라우저 안에서만 계산되고 서버에 저장되지 않습니다.">
+<meta property="og:image" content="https://sylim9.github.io/saju-app/og.png">
+<meta property="og:url" content="https://sylim9.github.io/saju-app/privacy.html">
+<meta property="og:locale" content="ko_KR">
+<link rel="canonical" href="https://sylim9.github.io/saju-app/privacy.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#1B1C38; --sky-deep:#12132A; --star:#FFF2C2;
+  --ink:#F6EFDC; --ink-soft:#A8A7C3; --line:#F6EFDC;
+  --sticker:#2C2D52; --sticker-2:#35365F;
+  --wood:#7FD486; --fire:#FF8E80; --earth:#F0C765; --metal:#C9D3DE; --water:#78B8F6;
+  --on-accent:#2A2B55;
+  --display:"Jua",sans-serif; --body:"Gowun Dodum",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--sky);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;
+  padding:28px max(16px,env(safe-area-inset-right,0px)) 80px max(16px,env(safe-area-inset-left,0px))}
+main{max-width:620px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em;text-wrap:balance;line-height:1.25}
+h1{font-size:30px;margin:0 0 6px;color:var(--star)}
+h2{font-size:22px;margin:40px 0 10px;color:var(--star)}
+h3{font-size:18px;margin:22px 0 6px}
+p{margin:0 0 12px}
+a{color:var(--star)}
+.lead{color:var(--ink-soft);margin-bottom:28px}
+.nav{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;margin-bottom:26px}
+.nav a{color:var(--ink-soft);text-decoration:none}
+.nav a.home{font-family:var(--display);color:var(--star);font-size:16px}
+.card{background:var(--sticker);border:3px solid var(--line);border-radius:18px 22px 18px 22px/22px 18px 22px 18px;padding:18px 20px;margin:0 0 18px;box-shadow:4px 4px 0 var(--sky-deep)}
+.card.soft{border-style:dashed;box-shadow:none}
+ul,ol{padding-left:20px;margin:0 0 12px}
+li{margin-bottom:4px}
+.soft-t{color:var(--ink-soft);font-size:14px}
+.animal{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:start;margin:30px 0 8px}
+.animal .pic{width:96px;height:96px;border-radius:50%;border:4px solid var(--ink);background:var(--c);overflow:hidden;display:grid;place-items:center;font-size:44px}
+.animal .pic img{width:100%;height:100%;object-fit:cover;display:block}
+.animal h2{margin:0 0 2px;scroll-margin-top:20px}
+.animal .meta{font-size:13px;color:var(--ink-soft)}
+.tag{display:inline-block;font-size:12px;padding:2px 10px;border-radius:999px;border:2px solid var(--c);color:var(--ink);margin:6px 6px 0 0}
+blockquote{margin:12px 0;padding:12px 16px;background:var(--ink);color:var(--sky-deep);border-radius:18px 20px 18px 6px;font-size:15px}
+blockquote p{margin:0 0 4px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+.toc a{display:inline-flex;align-items:center;gap:6px;background:var(--sticker);border:2px solid var(--c);border-radius:999px;padding:5px 12px;font-size:14px;color:var(--ink);text-decoration:none}
+.elem{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;margin-bottom:12px}
+.elem .dot{width:44px;height:44px;border-radius:50%;border:3px solid var(--line);background:var(--c);display:grid;place-items:center;font-family:var(--display);font-size:20px;color:var(--on-accent)}
+.elem b{font-family:var(--display);font-weight:400;font-size:16px;display:block}
+.elem small{color:var(--ink-soft);font-size:13px}
+.cta{display:block;text-align:center;font-family:var(--display);font-size:21px;color:var(--on-accent);background:var(--fire);border:3px solid var(--line);border-radius:18px 22px 18px 22px/22px 18px 22px 18px;padding:14px;text-decoration:none;box-shadow:4px 4px 0 var(--sky-deep);margin:34px 0 10px}
+.foot{margin-top:48px;text-align:center;font-size:12px;color:var(--ink-soft);line-height:1.9}
+.foot a{color:var(--ink-soft);text-decoration:none;margin:0 6px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--sticker-2);vertical-align:top}
+th{color:var(--ink-soft);font-weight:400;white-space:nowrap}
+</style>
+</head>
+<body>
+<main>
+<nav class="nav"><a class="home" href="./">🦁 내 사주 동물</a><a href="animals.html">동물 설명서</a><a href="about.html">서비스 소개</a><a href="contact.html">문의</a></nav>
+
+<h1>개인정보처리방침</h1>
+<p class="lead">내 사주 동물(이하 '서비스')은 이용자의 개인정보를 소중히 다룹니다. 이 방침은 서비스가 어떤 정보를 어떻게 다루는지 설명합니다. 시행일: 2026년 11월 12일</p>
+
+<h2>1. 수집하는 정보</h2>
+<div class="card soft">
+<p><b>서비스는 이용자의 개인정보를 서버에 수집·저장하지 않습니다.</b></p>
+<ul>
+<li><b>생년월일시, 출생 지역</b> — 사주 계산을 위해 입력하는 정보입니다. 계산은 전부 이용자의 브라우저 안에서 이루어지며, 입력값은 서비스 운영자의 서버로 전송되지 않습니다. (서비스에는 서버가 없습니다.)</li>
+<li><b>이름, 연락처, 계정</b> — 수집하지 않습니다. 회원가입이 없습니다.</li>
+</ul>
+</div>
+
+<h2>2. 브라우저에 저장되는 정보</h2>
+<p>서비스는 다음 정보를 이용자의 브라우저(localStorage)에만 저장합니다. 이 정보는 이용자의 기기 밖으로 나가지 않으며, 브라우저 데이터를 지우면 함께 삭제됩니다.</p>
+<ul>
+<li>상세 풀이 잠금 해제 여부 (어떤 사주에 대해 해제했는지)</li>
+</ul>
+
+<h2>3. 공유 링크에 담기는 정보</h2>
+<p>'친구한테 보내기', '궁합 초대' 기능은 이용자의 사주 네 기둥(생년월일시에서 계산된 여덟 글자)을 짧은 코드로 바꿔 링크 주소에 담습니다. 이 코드는 암호화되어 있지 않으므로, 링크를 받은 사람은 이용자의 생년월일시를 유추할 수 있습니다. 링크를 누구에게 보낼지는 이용자가 직접 결정합니다. 링크는 서비스 서버를 거치지 않으며, 카카오톡 등 이용자가 선택한 메신저를 통해서만 전달됩니다.</p>
+
+<h2>4. 광고와 쿠키</h2>
+<p>서비스는 운영을 위해 구글 애드센스(Google AdSense) 등 제3자 광고 서비스를 이용할 수 있습니다. 광고 제공자는 이용자의 관심사에 맞는 광고를 보여 주기 위해 쿠키 및 유사 기술을 사용할 수 있으며, 이 과정에서 이용자의 브라우저 정보, 기기 정보, 방문 기록 등이 광고 제공자에 의해 수집될 수 있습니다. 서비스 운영자는 이 정보에 접근하지 않습니다.</p>
+<ul>
+<li>구글의 광고 쿠키 사용에 관한 안내: <a href="https://policies.google.com/technologies/ads?hl=ko" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></li>
+<li>맞춤 광고 끄기: <a href="https://adssettings.google.com/" target="_blank" rel="noopener">adssettings.google.com</a></li>
+<li>브라우저 설정에서 쿠키를 차단하거나 삭제할 수 있습니다. 쿠키를 차단해도 서비스의 사주 계산 기능은 정상 동작합니다.</li>
+</ul>
+
+<h2>5. 외부 서비스</h2>
+<p>서비스는 화면 글꼴을 위해 Google Fonts를 불러옵니다. 이 과정에서 이용자의 IP 주소가 Google 서버에 전달될 수 있습니다. 서비스 페이지는 GitHub Pages에서 제공되며, GitHub는 접속 로그(IP 주소 등)를 자체 정책에 따라 처리할 수 있습니다.</p>
+<ul>
+<li><a href="https://policies.google.com/privacy?hl=ko" target="_blank" rel="noopener">Google 개인정보처리방침</a></li>
+<li><a href="https://docs.github.com/ko/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub 개인정보처리방침</a></li>
+</ul>
+
+<h2>6. 아동의 개인정보</h2>
+<p>서비스는 만 14세 미만 아동을 대상으로 하지 않으며, 아동의 개인정보를 의도적으로 수집하지 않습니다.</p>
+
+<h2>7. 이용자의 권리</h2>
+<p>서비스는 개인정보를 보관하지 않으므로 열람·정정·삭제 요청의 대상이 되는 정보가 없습니다. 브라우저에 저장된 잠금 해제 정보는 브라우저 설정에서 사이트 데이터를 삭제하면 지워집니다.</p>
+
+<h2>8. 방침의 변경</h2>
+<p>이 방침이 바뀌면 이 페이지에 시행일과 함께 게시합니다.</p>
+
+<h2>9. 문의</h2>
+<p>개인정보 관련 문의: <a href='mailto:sazoo.app@gmail.com'>sazoo.app@gmail.com</a></p>
+<p class="soft-t">시행일: 2026년 11월 12일</p>
+
+<p class="foot"><a href="./">홈</a>·<a href="animals.html">동물 설명서</a>·<a href="about.html">서비스 소개</a>·<a href="privacy.html">개인정보처리방침</a>·<a href="contact.html">문의</a><br>캐릭터 이미지는 AI로 생성한 그림이에요 · © 내 사주 동물</p>
+</main>
+</body>
+</html>
