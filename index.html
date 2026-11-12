@@ -1008,7 +1008,9 @@ function showAd(onDone){
 $("#adBtn").addEventListener("click", () => showAd(unlock));
 
 /* 공유로 열기: 공유 성공(또는 링크 복사)하면 보상 */
-const irae = w => w + ((w.charCodeAt(w.length - 1) - 0xAC00) % 28 ? "이래" : "래");
+const bat = w => (w.charCodeAt(w.length - 1) - 0xAC00) % 28 > 0;   // 마지막 글자 받침 유무
+const irae = w => w + (bat(w) ? "이래" : "래");
+const ga = w => bat(w) ? "이" : "가", eun = w => bat(w) ? "은" : "는";
 async function doShare(text, url){
   if (window.TOSS && window.TOSS.share) return window.TOSS.share(text, url);
   // 문구 안에 줄바꿈으로 링크를 넣는다. url을 따로 넘기면 폰이 "문구 링크"로 한 줄에 붙여버림
@@ -1088,7 +1090,7 @@ function renderPair(me, other, meIsInviter){
       <div class="who" style="--c:${COLORS[other.dayMasterElement]}"><div class="b">${charImg(other.dayMaster)}</div><small>${meIsInviter ? "친구" : "초대한 친구"}</small><b>${co.animal}</b></div>
     </div>
     <p class="one">${REL_TEXT[r.rel].one}</p>
-    <p class="sub">${co.animal}는 나한테 ${ROLE[r.godAB]}, 나는 ${co.animal}한테 ${ROLE[r.godBA]}</p>`;
+    <p class="sub">${co.animal}${eun(co.animal)} 나한테 ${ROLE[r.godAB]}, 나는 ${co.animal}한테 ${ROLE[r.godBA]}</p>`;
   const combined = {}; for (const e of ELEMENTS) combined[e] = Math.round((r.sa[e] + r.sb[e]) / 2);
   const cmax = ELEMENTS.reduce((x, y) => combined[y] > combined[x] ? y : x), cmin = ELEMENTS.reduce((x, y) => combined[y] < combined[x] ? y : x);
   const t = REL_TEXT[r.rel];
@@ -1127,7 +1129,7 @@ function handleHash(){
     partner = fromCode(m[1]); if (!partner) return false;
     const c = CHARACTERS[partner.dayMaster];
     $("#invite").hidden = false; $("#inviteMini").style.setProperty("--c", COLORS[partner.dayMasterElement]); $("#inviteMini").innerHTML = charImg(partner.dayMaster);
-    $("#inviteText").innerHTML = `<b>${c.animal}</b>가 너랑 궁합을 보고 싶대!<br>네 생일을 넣으면 바로 나와`;
+    $("#inviteText").innerHTML = `<b>${c.animal}</b>${ga(c.animal)} 너랑 궁합을 보고 싶대!<br>네 생일을 넣으면 바로 나와`;
     $("#result").hidden = true; return "invite";
   }
   if ((m = h.match(/^p-([0-9a-z]{8})-([0-9a-z]{8})$/))) {
