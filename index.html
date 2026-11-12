@@ -27,6 +27,26 @@
   --display:"Jua",sans-serif; --body:"Gowun Dodum",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   color-scheme:dark;
 }
+/* ---- 라이트: 낮의 스티커북 (앱인토스용, <html class="light">) ---- */
+html.light{
+  --sky:#EFE4D2; --sky-deep:#3B3C66; --star:#C9573A;
+  --ink:#2F3058; --ink-soft:#716D86; --line:#3B3C66;
+  --sticker:#FBF6EC; --sticker-2:#F5EDDF; --field:#FFFBF4; --err-bg:#FFE6DF;
+  --wood:#8EDB94; --fire:#FF9A8C; --earth:#F6CF6E; --metal:#D3DCE6; --water:#8CC4FA;
+  --dot:#E8B860; color-scheme:light;
+}
+html.light .bubble{background:#FFFBF4;color:var(--ink);border:3px solid var(--line);box-shadow:4px 4px 0 var(--line)}
+html.light .bubble::before{border-bottom-color:var(--line);top:-15px}
+html.light .bubble::after{content:"";position:absolute;left:31px;top:-9px;border:6px solid transparent;border-bottom-color:#FFFBF4;border-top:0}
+html.light .bubble .more{color:var(--ink-soft);opacity:1}
+html.light .toast{background:var(--ink);color:#fff}
+html.light .seg input[type=radio]:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+html.light .badge{box-shadow:0 0 0 3px var(--c,var(--fire)),0 12px 26px rgba(42,43,85,.18)}
+html.light .pair .who .b{box-shadow:0 0 0 2px var(--c),0 6px 16px rgba(42,43,85,.16)}
+html.light .adwrap{background:rgba(42,43,85,.55)}
+html.light .moon circle[mask]{fill:#F2B84B}
+html.light .moon circle:not([mask]){fill:#C98A2A}
+html.light .tile .hj{color:var(--ink-soft)}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{margin:0;background:var(--sky);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
@@ -355,6 +375,7 @@ button.go:disabled{cursor:wait;animation:none}
     <button class="again" id="again" type="button">다른 날짜로 다시 보기</button>
   </section>
 
+  <div id="tossBanner"></div>
   <p class="foot">절기는 한국천문연구원 공개값과 대조한 만세력 기준 · 표준시 변경(1954~61)과 서머타임(1948~60, 1987~88) 자동 보정<br>캐릭터 이미지는 AI로 생성한 그림이에요<br>
     <a href="animals.html">동물 설명서</a>·<a href="about.html">서비스 소개</a>·<a href="privacy.html">개인정보처리방침</a>·<a href="contact.html">문의</a></p>
 </main>
@@ -663,6 +684,8 @@ function charImg(k){ return `<img class="cimg" src="img/${IMG[k]}.jpg" alt="${CH
 /* ---------- 밤하늘 ---------- */
 (function sky(){
   const cv = $("#sky"), ctx = cv.getContext("2d");
+  const LIGHT = document.documentElement.classList.contains("light");
+  const STAR = LIGHT ? "#E8B860" : "#FFF2C2";
   let stars = [];
   function resize(){
     cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio;
@@ -674,7 +697,7 @@ function charImg(k){ return `<img class="cimg" src="img/${IMG[k]}.jpg" alt="${CH
     ctx.clearRect(0,0,innerWidth,innerHeight);
     for (const s of stars) {
       const a = reduced ? .7 : .35 + .45 * (Math.sin(t/900*s.s + s.p) + 1) / 2;
-      ctx.globalAlpha = a; ctx.fillStyle = "#FFF2C2";
+      ctx.globalAlpha = a * (LIGHT ? .55 : 1); ctx.fillStyle = STAR;
       ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill();
     }
     ctx.globalAlpha = 1;
@@ -973,6 +996,7 @@ function toast(msg){ const t = document.createElement("div"); t.className = "toa
 
 /* 모의 광고: 실제 SDK 붙이기 전까지 흐름 확인용. 5초 후 닫기 가능 → 보상 */
 function showAd(onDone){
+  if (window.TOSS && window.TOSS.rewarded) { window.TOSS.rewarded(onDone, () => toast("광고를 못 불러왔어. 잠시 후 다시 해봐")); return; }
   const wrap = document.createElement("div"); wrap.className = "adwrap";
   wrap.innerHTML = `<div class="ad"><div style="font-size:13px;color:#888">광고 자리 (실제 광고는 도메인 배포 후 연결)</div><div class="ph">여기에 보상형 광고가 나와</div><div class="cnt" id="adCnt">5</div><button id="adClose" disabled>닫고 풀이 듣기</button></div>`;
   document.body.append(wrap);
@@ -985,6 +1009,7 @@ $("#adBtn").addEventListener("click", () => showAd(unlock));
 /* 공유로 열기: 공유 성공(또는 링크 복사)하면 보상 */
 const irae = w => w + ((w.charCodeAt(w.length - 1) - 0xAC00) % 28 ? "이래" : "래");
 async function doShare(text, url){
+  if (window.TOSS && window.TOSS.share) return window.TOSS.share(text, url);
   // 문구 안에 줄바꿈으로 링크를 넣는다. url을 따로 넘기면 폰이 "문구 링크"로 한 줄에 붙여버림
   const full = text + "\n" + url;
   try {
@@ -1085,17 +1110,17 @@ function unlockPair(){
 }
 async function shareLink(hash, text){ return doShare(text, location.href.split("#")[0] + "#" + hash); }
 $("#inviteBtn").addEventListener("click", () => { if (!current) return; const c = CHARACTERS[current.dayMaster];
-  shareLink("f-" + enc(current), `내 사주 동물은 ${irae(c.animal)} ${c.emoji}\n너는 뭔지 궁금해. 생일 넣으면 우리 궁합까지 나와`); });
+  shareLink("f-" + enc(current), `내 사주 동물은 ${irae(c.animal)} ${c.emoji}\n너는 뭔지 궁금해!\n생일 넣으면 우리 궁합도 나와`); });
 async function sendPair(){ if (!current || !partner) return; const c = CHARACTERS[current.dayMaster];
   // 받는 사람(초대한 친구)이 '나'로 보이도록 상대 코드를 앞에
   const co = CHARACTERS[partner.dayMaster], sc = compat(current, partner).score;
-  const ok = await shareLink("p-" + enc(partner) + "-" + enc(current), `우리 궁합 ${sc}점! ${co.emoji} ${co.animal} × ${c.animal} ${c.emoji}\n왜 이 점수인지 보려면 👇`); if (ok) unlockPair(); }
+  const ok = await shareLink("p-" + enc(partner) + "-" + enc(current), `우리 궁합 ${sc}점!\n${co.emoji} ${co.animal} × ${c.animal} ${c.emoji}\n왜 이 점수인지 보려면 👇`); if (ok) unlockPair(); }
 $("#pairSendBtn").addEventListener("click", sendPair);
 $("#pairSendBtn2").addEventListener("click", sendPair);
 $("#pairAdBtn").addEventListener("click", () => showAd(unlockPair));
 
 function handleHash(){
-  const h = location.hash.slice(1);
+  const h = location.hash.slice(1) || (new URLSearchParams(location.search).get("c") || "");
   let m;
   if ((m = h.match(/^f-([0-9a-z]{8})$/))) {
     partner = fromCode(m[1]); if (!partner) return false;
